@@ -5,8 +5,25 @@
     "eyebrow": "Trabalhe conosco",
     "title": "Faça parte do nosso time jurássico",
     "description": "Envie seus dados para oportunidades nas unidades de Maringá e Londrina.",
-    "image": "assets/img/trabalhe-na-casa-do-dinossauro-29a40830e349.jpg",
+    "image": "/assets/uploads/trabalhe-na-casa-do-dinossauro-29a40830e349.jpg",
     "primaryText": "Enviar currículo",
-    "secondaryText": "Conhecer a casa"
+    "primaryLink": "#form-trabalho",
+    "secondaryText": "Conhecer a casa",
+    "secondaryLink": "restaurante-maringa.html"
+  },
+  "sections": [
+    {
+      "type": "work",
+      "style": "light",
+      "kicker": "Candidatura",
+      "title": "Envie seus dados"
+    }
+  ],
+  "cta": {
+    "type": "cta",
+    "title": "Buscamos pessoas com energia para encantar famílias",
+    "description": "Cadastre seu interesse para Maringá ou Londrina.",
+    "buttonText": "Enviar pelo WhatsApp",
+    "buttonLink": "#form-trabalho"
   }
 }

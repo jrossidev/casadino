@@ -4,23 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Painel | Casa do Dinossauro</title>
-  <style>
-    body{margin:0;background:#120d09;font-family:system-ui,-apple-system,Segoe UI,sans-serif}
-    .admin-loading{position:fixed;inset:0;display:grid;place-items:center;color:#fff3dc;text-align:center;padding:24px}
-    .admin-loading strong{display:block;font-size:1.35rem;margin-bottom:6px;color:#ffe09b}
-  </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <div class="admin-loading">
-    <div><strong>Carregando painel...</strong><span>Se for seu primeiro acesso, aceite o convite e crie sua senha.</span></div>
-  </div>
   <script>
     if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", function(user) {
-        if (!user && window.location.hash && window.location.hash.indexOf("_token=") !== -1) {
-          window.netlifyIdentity.open();
-        }
+      window.netlifyIdentity.on('init', function(user) {
+        var hash = window.location.hash || '';
+        var isIdentityHash = /invite_token|confirmation_token|recovery_token|email_change_token|access_token/.test(hash);
+        if (!user && isIdentityHash) window.netlifyIdentity.open();
       });
     }
   </script>

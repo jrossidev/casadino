@@ -5,8 +5,67 @@
     "eyebrow": "Mundo Kids",
     "title": "Diversão segura para os pequenos",
     "description": "Espaço pensado para as crianças brincarem enquanto a família aproveita a experiência do restaurante.",
-    "image": "assets/img/mundo-kids-8b2cf99afeb6.jpg",
+    "image": "/assets/uploads/mundo-kids-8b2cf99afeb6.jpg",
     "primaryText": "Chamar no WhatsApp",
-    "secondaryText": "Conhecer o espaço"
+    "primaryLink": "https://wa.me/554430472200",
+    "secondaryText": "Ver festas",
+    "secondaryLink": "festa-maringa.html"
+  },
+  "sections": [
+    {
+      "type": "cards",
+      "style": "light",
+      "kicker": "Para crianças",
+      "title": "Brincadeira, cuidado e diversão",
+      "description": "Edite os tópicos do Mundo Kids conforme a estrutura da unidade.",
+      "items": [
+        {
+          "subtitle": "Crianças",
+          "title": "Maiores de 3 anos",
+          "text": "Informações e regras para crianças maiores.",
+          "image": "/assets/uploads/maiores-de-3-anos-b0ba9299f2b6.png"
+        },
+        {
+          "subtitle": "Pequenos",
+          "title": "Menores de 3 anos",
+          "text": "Orientações para crianças menores e acompanhantes.",
+          "image": "/assets/uploads/menores-3-anos-e1322fc1dcae.png"
+        },
+        {
+          "subtitle": "Cardápio",
+          "title": "Menu Kids",
+          "text": "Opções pensadas para os pequenos.",
+          "image": "/assets/uploads/menu-kids-ea07caf1a663.jpg"
+        }
+      ]
+    },
+    {
+      "type": "gallery",
+      "style": "light",
+      "kicker": "Galeria",
+      "title": "Fotos do Mundo Kids",
+      "description": "Você pode inserir mais fotos aqui pelo painel.",
+      "items": [
+        {
+          "title": "Mundo Kids",
+          "image": "/assets/uploads/mundo-kids-maringa-2-265f36dc0391.png"
+        },
+        {
+          "title": "Mundo Kids",
+          "image": "/assets/uploads/mundo-kids-maringa-4-ca03f469bf15.png"
+        },
+        {
+          "title": "Mundo Kids",
+          "image": "/assets/uploads/mundo-kids-maringa-5-48792221dddd.jpg"
+        }
+      ]
+    }
+  ],
+  "cta": {
+    "type": "cta",
+    "title": "Traga as crianças para essa aventura",
+    "description": "Consulte detalhes pelo WhatsApp.",
+    "buttonText": "Chamar no WhatsApp",
+    "buttonLink": "https://wa.me/554430472200"
   }
 }

@@ -5,8 +5,25 @@
     "eyebrow": "Fale com o Dino",
     "title": "Queremos ouvir você",
     "description": "Tire dúvidas, envie sugestões, faça reservas ou fale sobre festas e parcerias nas unidades de Maringá e Londrina.",
-    "image": "assets/img/fale-com-a-casa-do-dinossauro-9fcbe266e8c8.jpg",
+    "image": "/assets/uploads/fale-com-a-casa-do-dinossauro-9fcbe266e8c8.jpg",
     "primaryText": "Chamar no WhatsApp",
-    "secondaryText": "Ligar agora"
+    "primaryLink": "https://wa.me/554430472200",
+    "secondaryText": "Ligar agora",
+    "secondaryLink": "tel:+554430472200"
+  },
+  "sections": [
+    {
+      "type": "contact",
+      "style": "light",
+      "kicker": "Mensagem",
+      "title": "Envie sua solicitação"
+    }
+  ],
+  "cta": {
+    "type": "cta",
+    "title": "Atendimento em Maringá e Londrina",
+    "description": "Use o mesmo WhatsApp para falar com a equipe.",
+    "buttonText": "Chamar no WhatsApp",
+    "buttonLink": "https://wa.me/554430472200"
   }
 }

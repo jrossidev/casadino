@@ -1,63 +1,34 @@
-CASA DO DINOSSAURO — SITE COM PAINEL ADMINISTRATIVO
+CASA DO DINOSSAURO - SITE COM PAINEL CORRIGIDO
 
-COMO ABRIR LOCALMENTE
-1. Abra o arquivo index.html ou maringa.html no navegador para visualizar o site.
-2. Alguns conteúdos editáveis via JSON podem não atualizar ao abrir direto pelo arquivo por bloqueio do navegador. Na Netlify funciona normalmente.
+IMPORTANTE:
+O painel /admin NÃO salva alterações se o site for publicado apenas arrastando ZIP/manual deploy na Netlify.
+Para funcionar corretamente, publique o projeto pelo GitHub e conecte o repositório na Netlify.
 
-COMO PUBLICAR NA NETLIFY COM PAINEL
-1. Suba esta pasta para um repositório no GitHub.
-2. Na Netlify, crie um novo site conectado a esse repositório.
-3. Em Site configuration > Identity, ative o Netlify Identity.
-4. Em Identity > Services, ative o Git Gateway.
-5. Convide o e-mail do cliente em Identity.
-6. Depois de publicado, acesse: seudominio.com.br/admin
+PASSO A PASSO RECOMENDADO:
+1. Crie um repositório no GitHub.
+2. Envie todos os arquivos deste projeto para o repositório.
+3. Na Netlify, crie um novo site importando esse repositório.
+4. Build command: deixe vazio.
+5. Publish directory: .
+6. Depois do deploy, vá em Identity e ative o Netlify Identity.
+7. Em Registration, use Invite only.
+8. Ative o Git Gateway.
+9. Convide o e-mail do cliente.
+10. O cliente cria a senha pelo convite e acessa /admin.
 
-O QUE O PAINEL EDITA
-- título e descrição das páginas;
-- imagem principal de cada página;
-- botões principais;
-- WhatsApp e telefone;
-- horários;
-- unidades Maringá e Londrina;
-- endereço das unidades;
-- redes sociais.
+O QUE FOI CORRIGIDO:
+- Removido aviso preso de "Carregando painel".
+- Mídia agora mostra imagens reais, não só .gitkeep.
+- Conteúdo das páginas virou editável pelo painel.
+- Unidades, horários, WhatsApp, textos, seções, cards e galerias podem ser editados.
+- O convite de usuário abre o Identity corretamente e redireciona para /admin.
 
-ARQUIVOS IMPORTANTES
-/admin/index.html          Painel administrativo
-/admin/config.yml          Configuração do painel
-/content/site.json         Dados gerais do site
-/content/*.json            Conteúdo das páginas
-/assets/uploads            Imagens enviadas pelo painel
-/assets/css/style.css      Visual do site
-/assets/js/content-loader.js Script que carrega os conteúdos editáveis
+ONDE EDITAR:
+/admin -> Configurações gerais: logo, WhatsApp, telefone, horários, unidades e redes sociais.
+/admin -> Páginas do site: topo, textos, seções, cards, galerias e chamada final de cada página.
 
-OBSERVAÇÃO
-O painel Decap CMS salva as alterações no GitHub. A Netlify republica o site automaticamente após cada alteração aprovada.
-
-
-=============================
-LOGIN DO PAINEL / ADMIN
-=============================
-
-IMPORTANTE: não existe uma senha padrão do painel.
-Cada usuário cria a própria senha pelo convite enviado pelo Netlify Identity.
-
-Passo certo para criar usuário:
-1. No Netlify, abra o projeto do site.
-2. Vá em Integrations > Identity > Netlify Identity.
-3. Em Registration, deixe Invite only.
-4. Convide o e-mail do usuário.
-5. O usuário abre o e-mail de convite e cria a senha.
-6. Depois acessa: /admin
-
-Se o convite abrir a página inicial, esta versão já tem o script do Netlify Identity no site para abrir a criação de senha.
-Se ainda não abrir, reenvie o convite ou envie recuperação de senha pelo painel do Netlify.
-
-Configuração recomendada:
-- Ative Identity.
-- Ative Git Gateway.
-- Em Registration, use Invite only.
-- Em Services > Git Gateway, deixe Roles vazio no primeiro teste.
-
-Dica:
-Se aparecer login e você não souber a senha, clique em recuperação de senha ou reenvie o convite no Netlify. A senha não é do GitHub nem da Netlify; é a senha criada para aquele e-mail no Identity do próprio site.
+OBSERVAÇÃO:
+Se o repositório usar branch master em vez de main, edite admin/config.yml e troque:
+branch: main
+por:
+branch: master

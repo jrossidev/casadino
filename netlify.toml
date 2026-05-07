@@ -1,0 +1,8 @@
+# Site estático. Não precisa de build command.
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/content/*.json"
+  [headers.values]
+    Cache-Control = "no-cache"

@@ -2,8 +2,6 @@ backend:
   name: git-gateway
   branch: main
 
-local_backend: true
-
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
@@ -19,6 +17,7 @@ collections:
         format: "json"
         fields:
           - { label: "Título do site", name: "siteTitle", widget: "string" }
+          - { label: "Logo", name: "logo", widget: "image", required: false }
           - { label: "Descrição geral", name: "description", widget: "text" }
           - { label: "WhatsApp com DDI e DDD", name: "whatsappNumber", widget: "string", hint: "Exemplo: 554430472200" }
           - { label: "Telefone exibido", name: "displayPhone", widget: "string" }
@@ -26,6 +25,7 @@ collections:
           - label: "Unidades"
             name: "units"
             widget: "list"
+            summary: "{{fields.name}}"
             fields:
               - { label: "Nome", name: "name", widget: "string" }
               - { label: "Endereço", name: "address", widget: "string" }
@@ -53,12 +53,71 @@ collections:
             name: "hero"
             widget: "object"
             fields:
-              - { label: "Selo", name: "eyebrow", widget: "string" }
+              - { label: "Selo", name: "eyebrow", widget: "string", required: false }
               - { label: "Título", name: "title", widget: "string" }
-              - { label: "Descrição", name: "description", widget: "text" }
+              - { label: "Descrição", name: "description", widget: "text", required: false }
               - { label: "Imagem de fundo", name: "image", widget: "image", required: false }
-              - { label: "Texto do botão principal", name: "primaryText", widget: "string" }
+              - { label: "Texto do botão principal", name: "primaryText", widget: "string", required: false }
+              - { label: "Link do botão principal", name: "primaryLink", widget: "string", required: false }
               - { label: "Texto do botão secundário", name: "secondaryText", widget: "string", required: false }
+              - { label: "Link do botão secundário", name: "secondaryLink", widget: "string", required: false }
+          - label: "Seções editáveis"
+            name: "sections"
+            widget: "list"
+            required: false
+            summary: "{{fields.type}} — {{fields.title}}"
+            fields: &sectionFields
+              - label: "Tipo da seção"
+                name: "type"
+                widget: "select"
+                default: "split"
+                options:
+                  - { label: "Texto com imagem", value: "split" }
+                  - { label: "Cards / tópicos", value: "cards" }
+                  - { label: "Galeria de fotos", value: "gallery" }
+                  - { label: "Chamada com botão", value: "cta" }
+                  - { label: "Unidades", value: "units" }
+                  - { label: "Formulário de contato", value: "contact" }
+                  - { label: "Formulário Trabalhe Conosco", value: "work" }
+                  - { label: "Cardápio / itens", value: "menu" }
+              - label: "Visual"
+                name: "style"
+                widget: "select"
+                default: "light"
+                required: false
+                options:
+                  - { label: "Claro", value: "light" }
+                  - { label: "Escuro", value: "dark" }
+              - { label: "Selo", name: "kicker", widget: "string", required: false }
+              - { label: "Título", name: "title", widget: "string", required: false }
+              - { label: "Descrição", name: "description", widget: "text", required: false }
+              - { label: "Imagem", name: "image", widget: "image", required: false }
+              - label: "Posição da imagem"
+                name: "imagePosition"
+                widget: "select"
+                required: false
+                options:
+                  - { label: "Direita", value: "right" }
+                  - { label: "Esquerda", value: "left" }
+              - { label: "Texto do botão", name: "buttonText", widget: "string", required: false }
+              - { label: "Link do botão", name: "buttonLink", widget: "string", required: false }
+              - label: "Etiquetas"
+                name: "tags"
+                widget: "list"
+                required: false
+                field: { label: "Texto", name: "tag", widget: "string" }
+              - label: "Itens / fotos / cards"
+                name: "items"
+                widget: "list"
+                required: false
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: "Título", name: "title", widget: "string", required: false }
+                  - { label: "Selo/Subtítulo", name: "subtitle", widget: "string", required: false }
+                  - { label: "Texto", name: "text", widget: "text", required: false }
+                  - { label: "Imagem", name: "image", widget: "image", required: false }
+                  - { label: "Texto do link", name: "linkText", widget: "string", required: false }
+                  - { label: "URL do link", name: "linkUrl", widget: "string", required: false }
           - label: "Chamada final"
             name: "cta"
             widget: "object"
@@ -66,7 +125,8 @@ collections:
             fields:
               - { label: "Título", name: "title", widget: "string", required: false }
               - { label: "Descrição", name: "description", widget: "text", required: false }
-              - { label: "Botão", name: "button", widget: "string", required: false }
+              - { label: "Texto do botão", name: "buttonText", widget: "string", required: false }
+              - { label: "Link do botão", name: "buttonLink", widget: "string", required: false }
       - label: "Restaurante"
         name: "restaurante"
         file: "content/restaurante.json"

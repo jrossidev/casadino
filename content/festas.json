@@ -5,8 +5,55 @@
     "eyebrow": "Faça sua festa",
     "title": "Aniversários com clima jurássico",
     "description": "Celebre momentos especiais com estrutura temática, atendimento e diversão nas unidades de Maringá e Londrina.",
-    "image": "assets/img/festa-casa-do-dinossauro-316516844e30.jpg",
+    "image": "/assets/uploads/festa-casa-do-dinossauro-316516844e30.jpg",
     "primaryText": "Pedir orçamento",
-    "secondaryText": "Ver opções"
+    "primaryLink": "https://wa.me/554430472200",
+    "secondaryText": "Ver opções",
+    "secondaryLink": "#opcoes"
+  },
+  "sections": [
+    {
+      "type": "split",
+      "style": "light",
+      "kicker": "Festas",
+      "title": "Sua comemoração com uma experiência diferente",
+      "description": "Edite aqui as informações sobre pacotes, formatos de festa, diferenciais e orientações para aniversários.",
+      "image": "/assets/uploads/festa-maringa-3-7993c8cec8d4.png",
+      "buttonText": "Pedir orçamento",
+      "buttonLink": "https://wa.me/554430472200",
+      "tags": [
+        "Aniversários",
+        "Família",
+        "Ambiente temático"
+      ]
+    },
+    {
+      "type": "gallery",
+      "style": "light",
+      "kicker": "Galeria",
+      "title": "Fotos das festas",
+      "description": "Adicione novas fotos pelo painel de mídia.",
+      "items": [
+        {
+          "title": "Festa",
+          "image": "/assets/uploads/festa-casa-do-dinossauro-316516844e30.jpg"
+        },
+        {
+          "title": "Dino Baby",
+          "image": "/assets/uploads/dino-baby-casa-do-dinossauro-d08139c92fb5.jpg"
+        },
+        {
+          "title": "Casa",
+          "image": "/assets/uploads/casa-do-dinossauro-dfbf12cd19c5.png"
+        }
+      ]
+    }
+  ],
+  "cta": {
+    "type": "cta",
+    "title": "Quer fazer sua festa com o Dino?",
+    "description": "Chame no WhatsApp e fale com a equipe.",
+    "buttonText": "Falar sobre festa",
+    "buttonLink": "https://wa.me/554430472200"
   }
 }

@@ -1,145 +1,55 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Restaurante temático da Casa do Dinossauro em Maringá e Londrina." name="description"/>
-<title>Restaurante | Casa do Dinossauro Maringá e Londrina</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Bree+Serif&amp;family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
-<link href="assets/css/style.css" rel="stylesheet"/>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Casa do Dinossauro em Maringá e Londrina.">
+  <title>Restaurante | Casa do Dinossauro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on('init', function(user) {
+      var hash = window.location.hash || '';
+      var isIdentityHash = /invite_token|confirmation_token|recovery_token|email_change_token|access_token/.test(hash);
+      if (!user && isIdentityHash) window.netlifyIdentity.open();
+      window.netlifyIdentity.on('login', function() {
+        if (isIdentityHash) window.location.href = '/admin/';
+      });
+    });
+  }
+</script>
 </head>
-<body data-page="restaurante">
-<header class="site-header" data-header="">
-<a aria-label="Casa do Dinossauro - Início" class="brand" href="maringa.html">
-<img alt="Casa do Dinossauro" loading="eager" src="assets/img/casa-do-dinossauro-6215cc7ecec5.webp"/>
-</a>
-<button aria-expanded="false" aria-label="Abrir menu" class="menu-toggle" data-menu-toggle="" type="button">
-<span></span><span></span><span></span>
-</button>
-<nav class="nav" data-nav="">
-<a href="maringa.html">Início</a>
-<a class="active" href="restaurante-maringa.html">Restaurante</a>
+<body data-page="restaurante" data-file="restaurante-maringa.html">
+  <header class="site-header" data-header>
+    <a class="brand" href="maringa.html" aria-label="Casa do Dinossauro - Início">
+      <img data-site-logo src="/assets/uploads/casa-do-dinossauro-6215cc7ecec5.webp" alt="Casa do Dinossauro" loading="eager">
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" data-menu-toggle><span></span><span></span><span></span></button>
+    <nav class="nav" data-nav><a href="maringa.html">Início</a>
+<a href="restaurante-maringa.html" class="active">Restaurante</a>
 <a href="cardapio-maringa.html">Cardápio</a>
 <a href="festa-maringa.html">Festas</a>
 <a href="mundo-kids-maringa.html">Mundo Kids</a>
 <a href="trabalhe-maringa.html">Trabalhe Aqui</a>
-<a href="fale-maringa.html">Contato</a>
-</nav>
-<a class="header-cta" data-whatsapp-link="" href="https://wa.me/554430472200" rel="noreferrer" target="_blank">Reservar</a>
-</header>
-<main>
-<section class="hero">
-<div class="hero-bg" data-content-bg="hero.image" style="background-image: linear-gradient(90deg, rgba(22,14,8,.94), rgba(22,14,8,.68), rgba(22,14,8,.15)), url('assets/img/restaurante-em-maring-044e671ba002.jpg');"></div>
-<div class="container hero-grid">
-<div class="hero-copy reveal">
-<span class="eyebrow" data-content="hero.eyebrow">Restaurante temático</span>
-<h1 data-content="hero.title">Gastronomia, diversão e ambiente jurássico</h1>
-<p data-content="hero.description">Uma experiência completa para famílias, casais e grupos nas unidades de Maringá e Londrina.</p>
-<div class="hero-actions">
-<a class="btn primary" data-content="hero.primaryText" data-whatsapp-link="" href="https://wa.me/554430472200" rel="noreferrer" target="_blank">Reservar pelo WhatsApp</a>
-<a class="btn secondary" data-content="hero.secondaryText" href="mundo-kids-maringa.html" rel="noreferrer" target="_self">Ver cardápio</a>
-</div>
-</div>
-<div class="hero-cards reveal" data-units="">
-<aside class="hero-card">
-<img alt="Casa do Dinossauro" loading="eager" src="assets/img/casa-do-dinossauro-6215cc7ecec5.webp"/>
-<strong>Casa do Dinossauro Maringá</strong>
-<span>Av. Brasil, 2212 — Maringá/PR</span>
-<span>(44) 3047-2200</span>
-<small>Terça a sexta: 17h às 23h • Sábado e domingo: 11h às 15h e 17h30 às 23h</small>
-</aside>
-<aside class="hero-card">
-<img alt="Casa do Dinossauro" loading="eager" src="assets/img/casa-do-dinossauro-6215cc7ecec5.webp"/>
-<strong>Casa do Dinossauro Londrina</strong>
-<span>Av. Maringá, 1330 - Vitória, Londrina - PR, 86060-000</span>
-<span>(44) 3047-2200</span>
-<small>Terça a sexta: 17h às 23h • Sábado e domingo: 11h às 15h e 17h30 às 23h</small>
-</aside>
-</div>
-</div>
-</section>
-<section class="section section-light">
-<div class="container split">
-<div class="section-copy reveal">
-<span class="section-kicker">Quem somos</span>
-<h2>Uma casa feita para acolher, encantar e divertir</h2>
-<p>Queremos proporcionar uma experiência diferenciada com gastronomia, apresentações e brincadeiras. Aqui, cada cliente é recebido como convidado especial.</p>
-<p>O ambiente temático cria uma sensação de aventura desde a chegada, com decoração, personagens e detalhes que deixam a visita marcante.</p>
-</div>
-<div class="rounded-panel reveal">
-<img alt="Restaurante temático Casa do Dinossauro" src="assets/img/restaurante-tem-tico-7dba715458e7.jpg"/>
-</div>
-</div>
-</section>
-<section class="section">
-<div class="container">
-<div class="section-head reveal"><span class="section-kicker">Valores</span><h2>O que guia a experiência</h2></div>
-<div class="cards values">
-<article class="value-card reveal"><span>01</span><h3>Inovação</h3><p>Experiências criativas, pratos temáticos e momentos memoráveis para todas as idades.</p></article>
-<article class="value-card reveal"><span>02</span><h3>Qualidade gastronômica</h3><p>Cuidado com ingredientes, apresentação e sabor em cada detalhe do atendimento.</p></article>
-<article class="value-card reveal"><span>03</span><h3>Atendimento afetuoso</h3><p>Equipe preparada para receber famílias com carinho, atenção e eficiência.</p></article>
-<article class="value-card reveal"><span>04</span><h3>Diversão em família</h3><p>Ambiente seguro, alegre e interativo para crianças e adultos aproveitarem juntos.</p></article>
-<article class="value-card reveal"><span>05</span><h3>Aventura e emoção</h3><p>Dinossauros, cenários e apresentações que tornam a visita diferente do comum.</p></article>
-<article class="value-card reveal"><span>06</span><h3>Integridade</h3><p>Relacionamento transparente, respeitoso e ético com clientes, equipe e parceiros.</p></article>
-</div>
-</div>
-</section>
-<section class="section section-dark cta-band">
-<div class="container reveal">
-<h2>Pronto para viver essa experiência?</h2>
-<p>Chame no WhatsApp e confirme sua visita em uma das unidades: Maringá ou Londrina.</p>
-<a class="btn primary" data-whatsapp-link="" href="https://wa.me/554430472200" rel="noreferrer" target="_blank">Reservar agora</a>
-</div>
-</section>
-</main>
-<footer class="footer">
-<div class="container footer-grid">
-<div>
-<img alt="Casa do Dinossauro" class="footer-logo" src="assets/img/casa-do-dinossauro-6215cc7ecec5.webp"/>
-<p>Restaurante temático em Maringá e Londrina com gastronomia, diversão, festas e Mundo Kids para toda a família.</p>
-</div>
-<div>
-<h3>Unidades</h3>
-<p><strong>Maringá</strong><br/>Av. Brasil, 2212 — Maringá/PR<br/>(44) 3047-2200</p>
-<p><strong>Londrina</strong><br/>Av. Maringá, 1330 - Vitória, Londrina - PR, 86060-000<br/>(44) 3047-2200</p>
-<p>Terça a sexta: 17h às 23h<br/>Sábado e domingo: 11h às 15h e 17h30 às 23h</p>
-</div>
-<div>
-<h3>Links rápidos</h3>
-<a href="restaurante-maringa.html">Restaurante</a>
-<a href="cardapio-maringa.html">Cardápio</a>
-<a href="festa-maringa.html">Faça sua festa</a>
-<a href="mundo-kids-maringa.html">Mundo Kids</a>
-<a href="fale-maringa.html">Fale Conosco</a>
-</div>
-<div>
-<h3>Siga o Dino</h3>
-<a href="https://www.instagram.com/casadodinossauro/" rel="noreferrer" target="_blank">Instagram</a>
-<a href="https://www.facebook.com/CasadoDinossauro" rel="noreferrer" target="_blank">Facebook</a>
-<a href="https://www.youtube.com/@casadodinossauro1567" rel="noreferrer" target="_blank">YouTube</a>
-</div>
-</div>
-<div class="footer-bottom">Casa do Dinossauro © 2026 — Todos os direitos reservados.</div>
-</footer>
-<a aria-label="Chamar no WhatsApp" class="float-whatsapp" data-whatsapp-link="" href="https://wa.me/554430472200" rel="noreferrer" target="_blank">☘️ <span>WhatsApp</span></a>
-<script src="assets/js/app.js"></script>
-<script src="assets/js/content-loader.js"></script><script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", function(user) {
-      if (!user && window.location.hash && window.location.hash.indexOf("_token=") !== -1) {
-        window.netlifyIdentity.open();
-      }
-      if (!user) {
-        window.netlifyIdentity.on("login", function() {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
-</script>
+<a href="fale-maringa.html">Contato</a></nav>
+    <a class="header-cta" data-whatsapp-link href="https://wa.me/554430472200" target="_blank" rel="noreferrer">Reservar</a>
+  </header>
+  <main data-main><div class="dynamic-loading">Carregando conteúdo...</div></main>
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div><img class="footer-logo" data-site-logo src="/assets/uploads/casa-do-dinossauro-6215cc7ecec5.webp" alt="Casa do Dinossauro"><p data-footer-description>Restaurante temático em Maringá e Londrina.</p></div>
+      <div><h3>Atendimento</h3><p data-footer-hours>Terça a sexta: 17h às 23h • Sábado e domingo: 11h às 15h e 17h30 às 23h</p><div data-footer-units></div></div>
+      <div><h3>Links rápidos</h3><a href="restaurante-maringa.html">Restaurante</a><a href="cardapio-maringa.html">Cardápio</a><a href="festa-maringa.html">Faça sua festa</a><a href="mundo-kids-maringa.html">Mundo Kids</a><a href="fale-maringa.html">Fale Conosco</a></div>
+      <div><h3>Siga o Dino</h3><a data-social="instagram" href="https://www.instagram.com/casadodinossauro/" target="_blank" rel="noreferrer">Instagram</a><a data-social="facebook" href="https://www.facebook.com/CasadoDinossauro" target="_blank" rel="noreferrer">Facebook</a><a data-social="youtube" href="https://www.youtube.com/@casadodinossauro1567" target="_blank" rel="noreferrer">YouTube</a></div>
+    </div>
+    <div class="footer-bottom">Casa do Dinossauro © 2026 — Todos os direitos reservados.</div>
+  </footer>
+  <a class="float-whatsapp" data-whatsapp-link href="https://wa.me/554430472200" target="_blank" rel="noreferrer" aria-label="Chamar no WhatsApp">☘️ <span>WhatsApp</span></a>
+  <script src="assets/js/content-loader.js"></script>
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
