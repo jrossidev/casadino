@@ -5,7 +5,7 @@
     "eyebrow": "Restaurante temático",
     "title": "Gastronomia, diversão e ambiente jurássico",
     "description": "Uma experiência completa para famílias, casais e grupos nas unidades de Maringá e Londrina.",
-    "image": "/assets/uploads/restaurante-em-maring-044e671ba002.jpg",
+    "image": "assets/img/restaurante-em-maring-044e671ba002.jpg",
     "primaryText": "Reservar pelo WhatsApp",
     "primaryLink": "https://wa.me/554430472200",
     "secondaryText": "Ver cardápio",
@@ -18,7 +18,7 @@
       "kicker": "A casa",
       "title": "Um restaurante feito para encantar",
       "description": "A Casa do Dinossauro une gastronomia, decoração temática e atendimento para receber famílias, casais, grupos e comemorações.",
-      "image": "/assets/uploads/restaurante-tem-tico-7dba715458e7.jpg",
+      "image": "assets/img/restaurante-tem-tico-7dba715458e7.jpg",
       "buttonText": "Ver cardápio",
       "buttonLink": "cardapio-maringa.html",
       "tags": [
@@ -39,19 +39,19 @@
           "subtitle": "Pratos",
           "title": "Opções para todos",
           "text": "Destaques da casa, bebidas, sobremesas e opções para crianças.",
-          "image": "/assets/uploads/1-dino-drinks-b-f29f693ffb3a.jpg"
+          "image": "assets/img/1-dino-drinks-b-f29f693ffb3a.jpg"
         },
         {
           "subtitle": "Sobremesa",
           "title": "Sobremesa T-Rex",
           "text": "Uma experiência divertida até na hora da sobremesa.",
-          "image": "/assets/uploads/sobremesa-trex-143d4f7175d0.png"
+          "image": "assets/img/sobremesa-trex-143d4f7175d0.png"
         },
         {
           "subtitle": "Crianças",
           "title": "Menu Kids",
           "text": "Opções para deixar a experiência dos pequenos ainda melhor.",
-          "image": "/assets/uploads/menu-kids-ea07caf1a663.jpg"
+          "image": "assets/img/menu-kids-ea07caf1a663.jpg"
         }
       ]
     }

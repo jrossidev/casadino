@@ -5,7 +5,7 @@
     "eyebrow": "Maringá e Londrina",
     "title": "Uma aventura jurássica para toda a família",
     "description": "Restaurante temático com gastronomia, diversão, festas e Mundo Kids nas unidades de Maringá e Londrina.",
-    "image": "/assets/uploads/dino-baby-casa-do-dinossauro-d08139c92fb5.jpg",
+    "image": "assets/img/dino-baby-casa-do-dinossauro-d08139c92fb5.jpg",
     "primaryText": "Reservar pelo WhatsApp",
     "primaryLink": "https://wa.me/554430472200",
     "secondaryText": "Conhecer o restaurante",
@@ -23,7 +23,7 @@
           "subtitle": "Restaurante",
           "title": "Ambiente jurássico",
           "text": "Uma casa temática para refeições em família, encontros e comemorações.",
-          "image": "/assets/uploads/restaurante-tem-tico-7dba715458e7.jpg",
+          "image": "assets/img/restaurante-tem-tico-7dba715458e7.jpg",
           "linkText": "Ver restaurante",
           "linkUrl": "restaurante-maringa.html"
         },
@@ -31,7 +31,7 @@
           "subtitle": "Festas",
           "title": "Aniversários especiais",
           "text": "Estrutura para comemorar com decoração, diversão e atendimento.",
-          "image": "/assets/uploads/festa-casa-do-dinossauro-316516844e30.jpg",
+          "image": "assets/img/festa-casa-do-dinossauro-316516844e30.jpg",
           "linkText": "Ver festas",
           "linkUrl": "festa-maringa.html"
         },
@@ -39,7 +39,7 @@
           "subtitle": "Mundo Kids",
           "title": "Diversão para crianças",
           "text": "Espaço kids para deixar a visita ainda mais completa.",
-          "image": "/assets/uploads/mundo-kids-8b2cf99afeb6.jpg",
+          "image": "assets/img/mundo-kids-8b2cf99afeb6.jpg",
           "linkText": "Ver Mundo Kids",
           "linkUrl": "mundo-kids-maringa.html"
         }
@@ -61,15 +61,15 @@
       "items": [
         {
           "title": "Restaurante",
-          "image": "/assets/uploads/restaurante-em-maring-044e671ba002.jpg"
+          "image": "assets/img/restaurante-em-maring-044e671ba002.jpg"
         },
         {
           "title": "Cardápio",
-          "image": "/assets/uploads/casa-do-dinossauro-card-pio-dfa72eca9f5a.jpg"
+          "image": "assets/img/casa-do-dinossauro-card-pio-dfa72eca9f5a.jpg"
         },
         {
           "title": "Sobremesa",
-          "image": "/assets/uploads/sobremesa-trex-143d4f7175d0.png"
+          "image": "assets/img/sobremesa-trex-143d4f7175d0.png"
         }
       ]
     }

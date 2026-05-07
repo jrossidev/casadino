@@ -30,7 +30,7 @@
 
   const unitCards = (site) => (site.units || []).map((unit) => `
     <aside class="hero-card">
-      <img src="${esc(site.logo || '/assets/uploads/casa-do-dinossauro-6215cc7ecec5.webp')}" alt="Casa do Dinossauro" loading="eager">
+      <img src="${esc(site.logo || 'assets/img/casa-do-dinossauro-6215cc7ecec5.webp')}" alt="Casa do Dinossauro" loading="eager">
       <strong>${text(unit.name)}</strong>
       <span>${text(unit.address)}</span>
       <span>${text(unit.phone || site.displayPhone)}</span>
@@ -44,7 +44,7 @@
     const secondaryHref = hero.secondaryLink || 'restaurante-maringa.html';
     return `
       <section class="hero">
-        <div class="hero-bg" style="background-image: linear-gradient(90deg, rgba(22,14,8,.94), rgba(22,14,8,.68), rgba(22,14,8,.15)), url('${esc(image(hero.image || '/assets/uploads/restaurante-tem-tico-7dba715458e7.jpg'))}');"></div>
+        <div class="hero-bg" style="background-image: linear-gradient(90deg, rgba(22,14,8,.94), rgba(22,14,8,.68), rgba(22,14,8,.15)), url('${esc(image(hero.image || 'assets/img/restaurante-tem-tico-7dba715458e7.jpg'))}');"></div>
         <div class="container hero-grid">
           <div class="hero-copy reveal">
             ${hero.eyebrow ? `<span class="eyebrow">${text(hero.eyebrow)}</span>` : ''}
@@ -213,8 +213,8 @@
   };
 
   Promise.all([
-    fetch('/content/site.json', { cache: 'no-store' }).then((res) => res.json()),
-    fetch(`/content/${page}.json`, { cache: 'no-store' }).then((res) => res.json())
+    fetch('content/site.json', { cache: 'no-store' }).then((res) => res.json()),
+    fetch(`content/${page}.json`, { cache: 'no-store' }).then((res) => res.json())
   ]).then(([site, data]) => {
     window.siteWhatsappNumber = site.whatsappNumber || '554430472200';
     document.title = data.titleTag || site.siteTitle || document.title;

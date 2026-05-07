@@ -32,3 +32,10 @@ Se o repositório usar branch master em vez de main, edite admin/config.yml e tr
 branch: main
 por:
 branch: master
+
+
+CORREÇÃO DE IMAGENS:
+As imagens padrão do site agora usam a pasta assets/img, que já vem com todas as fotos do projeto. O painel também envia novas imagens para assets/img, então elas aparecem no site e na aba Mídia.
+
+ENDEREÇO LONDRINA:
+Padronizado como: Av. Maringá, 1330 — Londrina/PR.
