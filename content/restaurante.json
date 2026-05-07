@@ -1,5 +1,5 @@
 {
-  "titleTag": "Restaurante | Casa do Dinossauro Maringá e Londrina",
+  "titleTag": "Restaurante | Casa do Dinossauro",
   "metaDescription": "Restaurante temático da Casa do Dinossauro em Maringá e Londrina.",
   "hero": {
     "eyebrow": "Restaurante temático",
@@ -13,20 +13,20 @@
   },
   "sections": [
     {
-      "type": "split",
+      "buttonLink": "cardapio-maringa.html",
       "style": "light",
       "kicker": "A casa",
       "title": "Um restaurante feito para encantar",
-      "description": "A Casa do Dinossauro une gastronomia, decoração temática e atendimento para receber famílias, casais, grupos e comemorações.",
-      "image": "/assets/img/restaurante-tem-tico-7dba715458e7.jpg",
-      "buttonText": "Ver cardápio",
-      "buttonLink": "cardapio-maringa.html",
       "tags": [
         "Maringá",
         "Londrina",
         "Família",
         "Ambiente temático"
-      ]
+      ],
+      "type": "split",
+      "image": "/assets/img/restaurante-tem-tico-7dba715458e7.jpg",
+      "description": "A Casa do Dinossauro une gastronomia, decoração temática e atendimento para receber famílias, casais, grupos e comemorações.",
+      "buttonText": "Ver cardápio"
     },
     {
       "type": "cards",
