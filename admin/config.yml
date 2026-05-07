@@ -1,0 +1,99 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+locale: "pt"
+
+collections:
+  - name: "configuracoes"
+    label: "Configurações gerais"
+    files:
+      - label: "Dados do site"
+        name: "site"
+        file: "content/site.json"
+        format: "json"
+        fields:
+          - { label: "Título do site", name: "siteTitle", widget: "string" }
+          - { label: "Descrição geral", name: "description", widget: "text" }
+          - { label: "WhatsApp com DDI e DDD", name: "whatsappNumber", widget: "string", hint: "Exemplo: 554430472200" }
+          - { label: "Telefone exibido", name: "displayPhone", widget: "string" }
+          - { label: "Horário padrão", name: "hours", widget: "string" }
+          - label: "Unidades"
+            name: "units"
+            widget: "list"
+            fields:
+              - { label: "Nome", name: "name", widget: "string" }
+              - { label: "Endereço", name: "address", widget: "string" }
+              - { label: "Telefone", name: "phone", widget: "string" }
+              - { label: "Horário", name: "hours", widget: "string" }
+          - label: "Redes sociais"
+            name: "social"
+            widget: "object"
+            fields:
+              - { label: "Instagram", name: "instagram", widget: "string", required: false }
+              - { label: "Facebook", name: "facebook", widget: "string", required: false }
+              - { label: "YouTube", name: "youtube", widget: "string", required: false }
+
+  - name: "paginas"
+    label: "Páginas do site"
+    files:
+      - label: "Página inicial"
+        name: "home"
+        file: "content/home.json"
+        format: "json"
+        fields: &pageFields
+          - { label: "Título SEO", name: "titleTag", widget: "string" }
+          - { label: "Descrição SEO", name: "metaDescription", widget: "text" }
+          - label: "Topo da página"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Selo", name: "eyebrow", widget: "string" }
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Descrição", name: "description", widget: "text" }
+              - { label: "Imagem de fundo", name: "image", widget: "image", required: false }
+              - { label: "Texto do botão principal", name: "primaryText", widget: "string" }
+              - { label: "Texto do botão secundário", name: "secondaryText", widget: "string", required: false }
+          - label: "Chamada final"
+            name: "cta"
+            widget: "object"
+            required: false
+            fields:
+              - { label: "Título", name: "title", widget: "string", required: false }
+              - { label: "Descrição", name: "description", widget: "text", required: false }
+              - { label: "Botão", name: "button", widget: "string", required: false }
+      - label: "Restaurante"
+        name: "restaurante"
+        file: "content/restaurante.json"
+        format: "json"
+        fields: *pageFields
+      - label: "Festas"
+        name: "festas"
+        file: "content/festas.json"
+        format: "json"
+        fields: *pageFields
+      - label: "Mundo Kids"
+        name: "mundoKids"
+        file: "content/mundoKids.json"
+        format: "json"
+        fields: *pageFields
+      - label: "Contato"
+        name: "contato"
+        file: "content/contato.json"
+        format: "json"
+        fields: *pageFields
+      - label: "Trabalhe Conosco"
+        name: "trabalhe"
+        file: "content/trabalhe.json"
+        format: "json"
+        fields: *pageFields
+      - label: "Cardápio"
+        name: "cardapio"
+        file: "content/cardapio.json"
+        format: "json"
+        fields: *pageFields

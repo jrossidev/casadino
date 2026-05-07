@@ -1,0 +1,35 @@
+CASA DO DINOSSAURO — SITE COM PAINEL ADMINISTRATIVO
+
+COMO ABRIR LOCALMENTE
+1. Abra o arquivo index.html ou maringa.html no navegador para visualizar o site.
+2. Alguns conteúdos editáveis via JSON podem não atualizar ao abrir direto pelo arquivo por bloqueio do navegador. Na Netlify funciona normalmente.
+
+COMO PUBLICAR NA NETLIFY COM PAINEL
+1. Suba esta pasta para um repositório no GitHub.
+2. Na Netlify, crie um novo site conectado a esse repositório.
+3. Em Site configuration > Identity, ative o Netlify Identity.
+4. Em Identity > Services, ative o Git Gateway.
+5. Convide o e-mail do cliente em Identity.
+6. Depois de publicado, acesse: seudominio.com.br/admin
+
+O QUE O PAINEL EDITA
+- título e descrição das páginas;
+- imagem principal de cada página;
+- botões principais;
+- WhatsApp e telefone;
+- horários;
+- unidades Maringá e Londrina;
+- endereço das unidades;
+- redes sociais.
+
+ARQUIVOS IMPORTANTES
+/admin/index.html          Painel administrativo
+/admin/config.yml          Configuração do painel
+/content/site.json         Dados gerais do site
+/content/*.json            Conteúdo das páginas
+/assets/uploads            Imagens enviadas pelo painel
+/assets/css/style.css      Visual do site
+/assets/js/content-loader.js Script que carrega os conteúdos editáveis
+
+OBSERVAÇÃO
+O painel Decap CMS salva as alterações no GitHub. A Netlify republica o site automaticamente após cada alteração aprovada.

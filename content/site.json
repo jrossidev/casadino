@@ -1,0 +1,26 @@
+{
+  "siteTitle": "Casa do Dinossauro — Maringá e Londrina",
+  "description": "Restaurante temático em Maringá e Londrina com gastronomia, diversão, festas e Mundo Kids para toda a família.",
+  "whatsappNumber": "554430472200",
+  "displayPhone": "(44) 3047-2200",
+  "hours": "Terça a sexta: 17h às 23h • Sábado e domingo: 11h às 15h e 17h30 às 23h",
+  "units": [
+    {
+      "name": "Casa do Dinossauro Maringá",
+      "address": "Av. Brasil, 2212 — Maringá/PR",
+      "phone": "(44) 3047-2200",
+      "hours": "Terça a sexta: 17h às 23h • Sábado e domingo: 11h às 15h e 17h30 às 23h"
+    },
+    {
+      "name": "Casa do Dinossauro Londrina",
+      "address": "Av. Maringá, 1330 — Londrina/PR",
+      "phone": "(44) 3047-2200",
+      "hours": "Terça a sexta: 17h às 23h • Sábado e domingo: 11h às 15h e 17h30 às 23h"
+    }
+  ],
+  "social": {
+    "instagram": "https://www.instagram.com/casadodinossauro/",
+    "facebook": "https://www.facebook.com/CasadoDinossauro",
+    "youtube": "https://www.youtube.com/@casadodinossauro1567"
+  }
+}
