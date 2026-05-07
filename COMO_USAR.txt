@@ -39,3 +39,9 @@ As imagens padrão do site agora usam a pasta assets/img, que já vem com todas 
 
 ENDEREÇO LONDRINA:
 Padronizado como: Av. Maringá, 1330 — Londrina/PR.
+
+ATUALIZAÇÃO - PRÉ-VISUALIZAÇÃO DO PAINEL
+- A pré-visualização do Decap CMS foi corrigida com um template visual próprio.
+- Os caminhos das imagens agora usam /assets/img/... para funcionar corretamente na Netlify.
+- A pasta de mídia do painel está configurada para assets/img.
+- Se trocar uma imagem pelo painel, aguarde o deploy terminar e atualize a página com Ctrl + F5.

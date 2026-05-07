@@ -7,7 +7,12 @@
   const esc = (value = '') => String(value).replace(/[&<>"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
   const text = (value = '') => esc(value).replace(/\n/g, '<br>');
   const cleanUrl = (value = '') => String(value || '').trim();
-  const image = (value = '') => cleanUrl(value);
+  const image = (value = '') => {
+    const src = cleanUrl(value);
+    if (!src) return '';
+    if (/^(https?:)?\/\//.test(src) || src.startsWith('data:') || src.startsWith('/')) return src;
+    return '/' + src.replace(/^\.\//, '');
+  };
   const whatsappUrl = (site, msg='') => {
     const base = `https://wa.me/${site.whatsappNumber || '554430472200'}`;
     return msg ? `${base}?text=${encodeURIComponent(msg)}` : base;
@@ -30,7 +35,7 @@
 
   const unitCards = (site) => (site.units || []).map((unit) => `
     <aside class="hero-card">
-      <img src="${esc(site.logo || 'assets/img/casa-do-dinossauro-6215cc7ecec5.webp')}" alt="Casa do Dinossauro" loading="eager">
+      <img src="${esc(image(site.logo || '/assets/img/casa-do-dinossauro-6215cc7ecec5.webp'))}" alt="Casa do Dinossauro" loading="eager">
       <strong>${text(unit.name)}</strong>
       <span>${text(unit.address)}</span>
       <span>${text(unit.phone || site.displayPhone)}</span>
@@ -44,7 +49,7 @@
     const secondaryHref = hero.secondaryLink || 'restaurante-maringa.html';
     return `
       <section class="hero">
-        <div class="hero-bg" style="background-image: linear-gradient(90deg, rgba(22,14,8,.94), rgba(22,14,8,.68), rgba(22,14,8,.15)), url('${esc(image(hero.image || 'assets/img/restaurante-tem-tico-7dba715458e7.jpg'))}');"></div>
+        <div class="hero-bg" style="background-image: linear-gradient(90deg, rgba(22,14,8,.94), rgba(22,14,8,.68), rgba(22,14,8,.15)), url('${esc(image(hero.image || '/assets/img/restaurante-tem-tico-7dba715458e7.jpg'))}');"></div>
         <div class="container hero-grid">
           <div class="hero-copy reveal">
             ${hero.eyebrow ? `<span class="eyebrow">${text(hero.eyebrow)}</span>` : ''}
@@ -202,7 +207,7 @@
   const renderFooter = (site) => {
     setText('[data-footer-description]', site.description || '');
     setText('[data-footer-hours]', site.hours || '');
-    document.querySelectorAll('[data-site-logo]').forEach((img) => { if (site.logo) img.src = site.logo; });
+    document.querySelectorAll('[data-site-logo]').forEach((img) => { if (site.logo) img.src = image(site.logo); });
     const units = document.querySelector('[data-footer-units]');
     if (units) units.innerHTML = (site.units || []).map(unit => `<p><strong>${text(unit.name)}</strong><br>${text(unit.address)}<br>${text(unit.phone || site.displayPhone)}</p>`).join('');
     if (site.social) {
