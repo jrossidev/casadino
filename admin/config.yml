@@ -9,68 +9,79 @@ locale: "pt"
 
 collections:
   - name: "configuracoes"
-    label: "Configurações gerais"
+    label: "⚙️ Configurações gerais"
+    description: "Edite dados que aparecem em todo o site: logo, WhatsApp, horários, unidades e redes sociais."
+    editor:
+      preview: true
     files:
       - label: "Dados do site"
         name: "site"
         file: "content/site.json"
         format: "json"
         fields:
-          - { label: "Título do site", name: "siteTitle", widget: "string" }
-          - { label: "Logo", name: "logo", widget: "image", required: false }
-          - { label: "Descrição geral", name: "description", widget: "text" }
-          - { label: "WhatsApp com DDI e DDD", name: "whatsappNumber", widget: "string", hint: "Exemplo: 554430472200" }
-          - { label: "Telefone exibido", name: "displayPhone", widget: "string" }
-          - { label: "Horário padrão", name: "hours", widget: "string" }
+          - { label: "Nome do site", name: "siteTitle", widget: "string", hint: "Exemplo: Casa do Dinossauro — Maringá e Londrina" }
+          - { label: "Logo", name: "logo", widget: "image", required: false, hint: "Aparece no topo, rodapé e nos cards das unidades." }
+          - { label: "Descrição geral", name: "description", widget: "text", hint: "Texto usado no rodapé e em algumas prévias." }
+          - { label: "WhatsApp com DDI e DDD", name: "whatsappNumber", widget: "string", hint: "Somente números. Exemplo: 554430472200" }
+          - { label: "Telefone exibido no site", name: "displayPhone", widget: "string", hint: "Exemplo: (44) 3047-2200" }
+          - { label: "Horário padrão", name: "hours", widget: "string", hint: "Usado quando a unidade não tiver um horário próprio." }
           - label: "Unidades"
             name: "units"
             widget: "list"
-            summary: "{{fields.name}}"
+            summary: "{{fields.name}} — {{fields.address}}"
+            hint: "Cadastre Maringá, Londrina ou novas unidades. Esses dados aparecem no topo, contato e rodapé."
             fields:
-              - { label: "Nome", name: "name", widget: "string" }
-              - { label: "Endereço", name: "address", widget: "string" }
-              - { label: "Telefone", name: "phone", widget: "string" }
-              - { label: "Horário", name: "hours", widget: "string" }
+              - { label: "Nome da unidade", name: "name", widget: "string" }
+              - { label: "Endereço", name: "address", widget: "string", hint: "Use curto e padronizado. Ex.: Av. Maringá, 1330 — Londrina/PR" }
+              - { label: "Telefone", name: "phone", widget: "string", required: false }
+              - { label: "Horário", name: "hours", widget: "string", required: false }
           - label: "Redes sociais"
             name: "social"
             widget: "object"
+            collapsed: true
             fields:
               - { label: "Instagram", name: "instagram", widget: "string", required: false }
               - { label: "Facebook", name: "facebook", widget: "string", required: false }
               - { label: "YouTube", name: "youtube", widget: "string", required: false }
 
   - name: "paginas"
-    label: "Páginas do site"
+    label: "📝 Páginas do site"
+    description: "Edite o conteúdo público de cada página. A pré-visualização à direita simula o site real."
+    editor:
+      preview: true
     files:
       - label: "Página inicial"
         name: "home"
         file: "content/home.json"
         format: "json"
         fields: &pageFields
-          - { label: "Título SEO", name: "titleTag", widget: "string" }
-          - { label: "Descrição SEO", name: "metaDescription", widget: "text" }
-          - label: "Topo da página"
+          - { label: "Título SEO", name: "titleTag", widget: "string", hint: "Título que aparece na aba do navegador e no Google." }
+          - { label: "Descrição SEO", name: "metaDescription", widget: "text", hint: "Resumo curto para buscadores." }
+          - label: "1. Topo da página"
             name: "hero"
             widget: "object"
+            hint: "Primeira área grande da página: título, imagem de fundo e botões."
             fields:
-              - { label: "Selo", name: "eyebrow", widget: "string", required: false }
-              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Selo", name: "eyebrow", widget: "string", required: false, hint: "Texto pequeno acima do título." }
+              - { label: "Título principal", name: "title", widget: "string" }
               - { label: "Descrição", name: "description", widget: "text", required: false }
               - { label: "Imagem de fundo", name: "image", widget: "image", required: false }
               - { label: "Texto do botão principal", name: "primaryText", widget: "string", required: false }
-              - { label: "Link do botão principal", name: "primaryLink", widget: "string", required: false }
+              - { label: "Link do botão principal", name: "primaryLink", widget: "string", required: false, hint: "Pode ser link do WhatsApp ou página interna." }
               - { label: "Texto do botão secundário", name: "secondaryText", widget: "string", required: false }
               - { label: "Link do botão secundário", name: "secondaryLink", widget: "string", required: false }
-          - label: "Seções editáveis"
+          - label: "2. Seções do conteúdo"
             name: "sections"
             widget: "list"
             required: false
             summary: "{{fields.type}} — {{fields.title}}"
+            hint: "Cada item vira uma seção da página. Use o tipo correto para manter o layout bonito."
             fields: &sectionFields
               - label: "Tipo da seção"
                 name: "type"
                 widget: "select"
                 default: "split"
+                hint: "Define o formato visual dessa seção na página."
                 options:
                   - { label: "Texto com imagem", value: "split" }
                   - { label: "Cards / tópicos", value: "cards" }
@@ -80,7 +91,7 @@ collections:
                   - { label: "Formulário de contato", value: "contact" }
                   - { label: "Formulário Trabalhe Conosco", value: "work" }
                   - { label: "Cardápio / itens", value: "menu" }
-              - label: "Visual"
+              - label: "Cor do bloco"
                 name: "style"
                 widget: "select"
                 default: "light"
@@ -91,7 +102,7 @@ collections:
               - { label: "Selo", name: "kicker", widget: "string", required: false }
               - { label: "Título", name: "title", widget: "string", required: false }
               - { label: "Descrição", name: "description", widget: "text", required: false }
-              - { label: "Imagem", name: "image", widget: "image", required: false }
+              - { label: "Imagem", name: "image", widget: "image", required: false, hint: "Usada no tipo Texto com imagem." }
               - label: "Posição da imagem"
                 name: "imagePosition"
                 widget: "select"
@@ -105,12 +116,14 @@ collections:
                 name: "tags"
                 widget: "list"
                 required: false
+                hint: "Pequenos destaques usados em algumas seções."
                 field: { label: "Texto", name: "tag", widget: "string" }
-              - label: "Itens / fotos / cards"
+              - label: "Itens, fotos ou cards"
                 name: "items"
                 widget: "list"
                 required: false
                 summary: "{{fields.title}}"
+                hint: "Use aqui os cards, fotos da galeria ou itens de cardápio."
                 fields:
                   - { label: "Título", name: "title", widget: "string", required: false }
                   - { label: "Selo/Subtítulo", name: "subtitle", widget: "string", required: false }
@@ -118,10 +131,12 @@ collections:
                   - { label: "Imagem", name: "image", widget: "image", required: false }
                   - { label: "Texto do link", name: "linkText", widget: "string", required: false }
                   - { label: "URL do link", name: "linkUrl", widget: "string", required: false }
-          - label: "Chamada final"
+          - label: "3. Chamada final"
             name: "cta"
             widget: "object"
             required: false
+            collapsed: true
+            hint: "Última faixa da página, normalmente com botão de reserva."
             fields:
               - { label: "Título", name: "title", widget: "string", required: false }
               - { label: "Descrição", name: "description", widget: "text", required: false }

@@ -45,3 +45,15 @@ ATUALIZAÇÃO - PRÉ-VISUALIZAÇÃO DO PAINEL
 - Os caminhos das imagens agora usam /assets/img/... para funcionar corretamente na Netlify.
 - A pasta de mídia do painel está configurada para assets/img.
 - Se trocar uma imagem pelo painel, aguarde o deploy terminar e atualize a página com Ctrl + F5.
+
+
+AJUSTE DE CONTEÚDO PÚBLICO
+- Textos do tipo "adicione pelo painel" não ficam mais visíveis no site público.
+- O painel /admin continua permitindo editar/remover/trocar fotos normalmente.
+- Endereço de Londrina padronizado: Av. Maringá, 1330 — Londrina/PR.
+
+ATUALIZAÇÃO DO PAINEL ADMIN
+- O painel /admin recebeu visual melhorado.
+- A pré-visualização agora simula melhor o site público, com menu, topo, cards, seções, rodapé e WhatsApp.
+- As etiquetas que aparecem na pré-visualização, como "Topo da página" e "Seção 1", aparecem SOMENTE dentro do admin. Elas não aparecem no site público.
+- Para o cliente editar, ele entra em /admin, abre a página desejada, edita os campos à esquerda e confere a prévia à direita.

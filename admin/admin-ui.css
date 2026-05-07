@@ -1,0 +1,79 @@
+:root {
+  --dino-bg: #fff3d8;
+  --dino-ink: #2a2018;
+  --dino-soft: #fffaf0;
+  --dino-dark: #120d09;
+  --dino-accent: #f5bd37;
+  --dino-red: #a72d24;
+  --dino-muted: #6d5d4b;
+  --dino-shadow: 0 24px 70px rgba(24, 14, 8, .16);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(245,189,55,.20), transparent 34%),
+    linear-gradient(180deg, #fff8e7, #f2dfb0) !important;
+  color: var(--dino-ink);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif !important;
+}
+.admin-loading {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  background: radial-gradient(circle at center, #2a1b10, #120d09 72%);
+  color: #fff3d8;
+  transition: opacity .28s ease, visibility .28s ease;
+}
+.admin-loading.is-hidden { opacity: 0; visibility: hidden; }
+.admin-loading img { width: 130px; filter: drop-shadow(0 20px 30px rgba(0,0,0,.34)); }
+.admin-loading strong { font-family: 'Bree Serif', Georgia, serif; font-size: clamp(2rem, 5vw, 4rem); line-height: 1; }
+.admin-loading span { color: #e5c884; font-weight: 700; }
+.admin-floating-help {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 2000;
+  max-width: 300px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(18,13,9,.92);
+  color: #fff3d8;
+  box-shadow: 0 18px 45px rgba(0,0,0,.24);
+  border: 1px solid rgba(255,255,255,.12);
+  pointer-events: none;
+}
+.admin-floating-help strong { display: block; color: #ffe09b; font-weight: 900; margin-bottom: 3px; }
+.admin-floating-help span { display: block; color: #d8c5a5; font-size: .86rem; line-height: 1.35; }
+/* Melhorias gerais no Decap CMS sem depender de uma classe única. */
+body button,
+body [role="button"] {
+  border-radius: 12px !important;
+  font-weight: 800 !important;
+}
+body input,
+body textarea,
+body select {
+  border-radius: 12px !important;
+}
+body a { font-weight: 700; }
+/* Deixa os cartões/listas mais próximos da identidade do projeto. */
+body main,
+body [class*="AppMain"],
+body [class*="CollectionMain"] {
+  background: transparent !important;
+}
+body [class*="CollectionTop"],
+body [class*="EditorContainer"],
+body [class*="SidebarContainer"],
+body [class*="ControlContainer"],
+body [class*="ObjectControl"] {
+  border-radius: 18px !important;
+}
+@media (max-width: 900px) {
+  .admin-floating-help { display: none; }
+}

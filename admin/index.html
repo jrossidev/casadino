@@ -3,20 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Painel | Casa do Dinossauro</title>
+  <title>Painel Admin | Casa do Dinossauro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/admin/admin-ui.css">
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
+  <div class="admin-loading" id="adminLoading">
+    <img src="/assets/img/casa-do-dinossauro-6215cc7ecec5.webp" alt="Casa do Dinossauro">
+    <strong>Carregando painel...</strong>
+    <span>Área de edição de textos, fotos, unidades e chamadas do site.</span>
+  </div>
+
   <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on('init', function(user) {
         var hash = window.location.hash || '';
         var isIdentityHash = /invite_token|confirmation_token|recovery_token|email_change_token|access_token/.test(hash);
         if (!user && isIdentityHash) window.netlifyIdentity.open();
+        window.netlifyIdentity.on('login', function() {
+          if (isIdentityHash) window.location.href = '/admin/';
+        });
       });
     }
   </script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script src="/admin/admin-helper.js"></script>
   <script src="/admin/preview.js"></script>
 </body>
 </html>
