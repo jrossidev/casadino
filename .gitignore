@@ -1,0 +1,12 @@
+.DS_Store
+__pycache__/
+node_modules/
+.env
+.vscode/
+uploads/
+*.log
+npm-debug.log*
+package-lock.json
+yarn.lock
+.idea/
+Thumbs.db

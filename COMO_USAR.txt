@@ -33,3 +33,31 @@ ARQUIVOS IMPORTANTES
 
 OBSERVAÇÃO
 O painel Decap CMS salva as alterações no GitHub. A Netlify republica o site automaticamente após cada alteração aprovada.
+
+
+=============================
+LOGIN DO PAINEL / ADMIN
+=============================
+
+IMPORTANTE: não existe uma senha padrão do painel.
+Cada usuário cria a própria senha pelo convite enviado pelo Netlify Identity.
+
+Passo certo para criar usuário:
+1. No Netlify, abra o projeto do site.
+2. Vá em Integrations > Identity > Netlify Identity.
+3. Em Registration, deixe Invite only.
+4. Convide o e-mail do usuário.
+5. O usuário abre o e-mail de convite e cria a senha.
+6. Depois acessa: /admin
+
+Se o convite abrir a página inicial, esta versão já tem o script do Netlify Identity no site para abrir a criação de senha.
+Se ainda não abrir, reenvie o convite ou envie recuperação de senha pelo painel do Netlify.
+
+Configuração recomendada:
+- Ative Identity.
+- Ative Git Gateway.
+- Em Registration, use Invite only.
+- Em Services > Git Gateway, deixe Roles vazio no primeiro teste.
+
+Dica:
+Se aparecer login e você não souber a senha, clique em recuperação de senha ou reenvie o convite no Netlify. A senha não é do GitHub nem da Netlify; é a senha criada para aquele e-mail no Identity do próprio site.

@@ -10,6 +10,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&amp;family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
 <link href="assets/css/style.css" rel="stylesheet"/>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body data-page="cardapio">
 <header class="site-header" data-header="">
@@ -37,7 +38,7 @@
 <div class="hero-copy reveal">
 <span class="eyebrow" data-content="hero.eyebrow">Cardápio</span>
 <h1 data-content="hero.title">Sabores para toda a família</h1>
-<p data-content="hero.description">Pratos, sobremesas e opções temáticas para curtir em Maringá e Londrina e Londrina.</p>
+<p data-content="hero.description">Pratos, sobremesas e opções temáticas para curtir em Maringá e Londrina.</p>
 <div class="hero-actions">
 <a class="btn primary" data-content="hero.primaryText" data-whatsapp-link="" href="#cardapio">Reservar pelo WhatsApp</a>
 <a class="btn secondary" data-content="hero.secondaryText" data-whatsapp-link="" href="https://wa.me/554430472200?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20o%20card%C3%A1pio%20da%20Casa%20do%20Dinossauro." rel="noreferrer" target="_blank">Ver destaques</a>
@@ -121,12 +122,12 @@
 <div class="container footer-grid">
 <div>
 <img alt="Casa do Dinossauro" class="footer-logo" src="assets/img/casa-do-dinossauro-6215cc7ecec5.webp"/>
-<p>Restaurante temático em Maringá e Londrina e Londrina com gastronomia, diversão, festas e Mundo Kids para toda a família.</p>
+<p>Restaurante temático em Maringá e Londrina com gastronomia, diversão, festas e Mundo Kids para toda a família.</p>
 </div>
 <div>
 <h3>Unidades</h3>
 <p><strong>Maringá</strong><br/>Av. Brasil, 2212 — Maringá/PR<br/>(44) 3047-2200</p>
-<p><strong>Londrina</strong><br/>Av. Maringá, 1330 — Londrina/PR<br/>(44) 3047-2200</p>
+<p><strong>Londrina</strong><br/>Av. Maringá, 1330 - Vitória, Londrina - PR, 86060-000<br/>(44) 3047-2200</p>
 <p>Terça a sexta: 17h às 23h<br/>Sábado e domingo: 11h às 15h e 17h30 às 23h</p>
 </div>
 <div>
@@ -148,5 +149,19 @@
 </footer>
 <a aria-label="Chamar no WhatsApp" class="float-whatsapp" data-whatsapp-link="" href="https://wa.me/554430472200" rel="noreferrer" target="_blank">☘️ <span>WhatsApp</span></a>
 <script src="assets/js/app.js"></script>
-<script src="assets/js/content-loader.js"></script></body>
+<script src="assets/js/content-loader.js"></script><script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", function(user) {
+      if (!user && window.location.hash && window.location.hash.indexOf("_token=") !== -1) {
+        window.netlifyIdentity.open();
+      }
+      if (!user) {
+        window.netlifyIdentity.on("login", function() {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
+</body>
 </html>
