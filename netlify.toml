@@ -6,3 +6,17 @@
   for = "/content/*.json"
   [headers.values]
     Cache-Control = "no-cache"
+
+
+[[redirects]]
+  from = "/p/:slug"
+  to = "/pagina.html?slug=:slug"
+  status = 200
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"

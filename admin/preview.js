@@ -40,6 +40,11 @@
       instagram: 'https://www.instagram.com/casadodinossauro/',
       facebook: 'https://www.facebook.com/CasadoDinossauro',
       youtube: 'https://www.youtube.com/@casadodinossauro1567'
+    },
+    modules: {
+      floatingWhatsapp: true,
+      announcement: { enabled: false, text: '', buttonText: '', buttonLink: '' },
+      analytics: { googleAnalyticsId: '', metaPixelId: '' }
     }
   };
 
@@ -257,11 +262,27 @@
     );
   }
 
+
+
+  function MapSection(props) {
+    var s = props.section || {};
+    var style = s.style === 'dark' ? 'section-dark' : 'section-light';
+    return h('section', { className: 'section editable-section preview-editable ' + style },
+      h(EditLabel, null, props.label || 'Mapa / localização'),
+      h('div', { className: 'container' },
+        h(SectionHead, { section: s }),
+        h('div', { className: 'map-frame reveal visible' },
+          s.embedUrl ? h('iframe', { src: norm(s.embedUrl), title: onlyText(s.title || 'Mapa'), loading: 'lazy' }) : h('div', { className: 'map-placeholder' }, 'Mapa do Google Maps')
+        )
+      )
+    );
+  }
+
   function Section(props) {
     var s = props.section || {};
     var site = withFallback(props.site);
     var type = s.type || (s.items && s.items.length ? 'cards' : 'split');
-    var label = 'Seção ' + (props.index + 1) + ' — ' + ({ split: 'Texto com imagem', cards: 'Cards', gallery: 'Galeria', cta: 'Chamada', units: 'Unidades', contact: 'Contato', work: 'Trabalhe Conosco', menu: 'Cardápio' }[type] || 'Conteúdo');
+    var label = 'Seção ' + (props.index + 1) + ' — ' + ({ split: 'Texto com imagem', cards: 'Cards', gallery: 'Galeria', cta: 'Chamada', units: 'Unidades', contact: 'Contato', work: 'Trabalhe Conosco', menu: 'Cardápio', map: 'Mapa' }[type] || 'Conteúdo');
     if (type === 'split') return h(Split, { section: s, label: label });
     if (type === 'cards' || type === 'menu') return h(CardsSection, { section: s, label: label });
     if (type === 'gallery') return h(Gallery, { section: s, label: label });
@@ -269,6 +290,7 @@
     if (type === 'units') return h(Units, { section: s, site: site, label: label });
     if (type === 'contact') return h(Contact, { section: s, site: site, label: label });
     if (type === 'work') return h(Work, { section: s, site: site, label: label });
+    if (type === 'map') return h(MapSection, { section: s, label: label });
     return h(Split, { section: s, label: label });
   }
 
@@ -310,6 +332,19 @@
     );
   }
 
+
+
+  function SiteModules(props) {
+    var site = withFallback(props.site);
+    var ann = site.modules && site.modules.announcement ? site.modules.announcement : {};
+    return ann.enabled && ann.text ? h('div', { className: 'site-announcement' },
+      h('div', { className: 'container' },
+        h('span', null, text(ann.text)),
+        ann.buttonText ? h('a', { href: '#' }, text(ann.buttonText)) : null
+      )
+    ) : null;
+  }
+
   function PagePreview(props) {
     var data = toJS(props.entry.getIn(['data']));
     var sections = Array.isArray(data.sections) ? data.sections : [];
@@ -317,6 +352,7 @@
     var site = fallbackSite;
     return h(PreviewChrome, null,
       h(SiteHeader, { site: site }),
+      h(SiteModules, { site: site }),
       h(Hero, { data: data, site: site }),
       sections.map(function (s, i) { return h(Section, { section: s, site: site, key: i, index: i }); }),
       cta.map(function (s, i) { return h(Cta, { section: s, key: 'cta' + i, label: 'Chamada final' }); }),
@@ -329,6 +365,7 @@
     var data = withFallback(toJS(props.entry.getIn(['data'])));
     return h(PreviewChrome, null,
       h(SiteHeader, { site: data }),
+      h(SiteModules, { site: data }),
       h('section', { className: 'section section-light preview-config preview-editable' },
         h(EditLabel, null, 'Configurações gerais'),
         h('div', { className: 'container' },
@@ -355,6 +392,79 @@
     );
   }
 
+
+
+  function ExtraPagesPreview(props) {
+    var data = toJS(props.entry.getIn(['data']));
+    var pages = data.pages || [];
+    var first = pages[0] || {
+      menuTitle: 'Nova página',
+      slug: 'nova-pagina',
+      titleTag: 'Nova página | Casa do Dinossauro',
+      hero: { eyebrow: 'Página extra', title: 'Título da nova página', description: 'Use este cadastro para criar páginas novas sem alterar o código.', image: '/assets/img/restaurante-tem-tico-7dba715458e7.jpg', primaryText: 'Chamar no WhatsApp' },
+      sections: [{ type: 'split', style: 'light', kicker: 'Conteúdo', title: 'Sua seção aparece aqui', description: 'Adicione textos, fotos, cards, galerias e mapas pelo painel.', image: '/assets/img/restaurante-em-maring-044e671ba002.jpg' }]
+    };
+    var sections = Array.isArray(first.sections) ? first.sections : [];
+    var cta = first.cta && first.cta.title ? [Object.assign({ type: 'cta' }, first.cta)] : [];
+    return h(PreviewChrome, null,
+      h('section', { className: 'section section-light preview-extra-list' },
+        h('div', { className: 'container' },
+          h('span', { className: 'section-kicker' }, 'Páginas extras'),
+          h('h2', null, 'Páginas criadas no painel'),
+          pages.length ? h('div', { className: 'cards three' }, pages.map(function (page, i) {
+            return h('article', { className: 'info-card', key: i },
+              h('strong', null, page.showInMenu ? 'Menu' : 'Oculta'),
+              h('h3', null, text(page.menuTitle || page.hero && page.hero.title || 'Página sem título')),
+              h('p', null, '/p/' + text(page.slug || 'sem-slug'))
+            );
+          })) : h('p', null, 'Nenhuma página extra cadastrada ainda.')
+        )
+      ),
+      h(SiteHeader, { site: fallbackSite }),
+      h(Hero, { data: first, site: fallbackSite }),
+      sections.map(function (s, i) { return h(Section, { section: s, site: fallbackSite, key: i, index: i }); }),
+      cta.map(function (s, i) { return h(Cta, { section: s, key: 'cta' + i, label: 'Chamada final' }); }),
+      h(SiteFooter, { site: fallbackSite })
+    );
+  }
+
   CMS.registerPreviewTemplate('paginas', PagePreview);
+
+
+  function ExtraPagesPreview(props) {
+    var data = toJS(props.entry.getIn(['data']));
+    var pages = data.pages || [];
+    var first = pages[0] || {
+      menuTitle: 'Nova página',
+      slug: 'nova-pagina',
+      titleTag: 'Nova página | Casa do Dinossauro',
+      hero: { eyebrow: 'Página extra', title: 'Título da nova página', description: 'Use este cadastro para criar páginas novas sem alterar o código.', image: '/assets/img/restaurante-tem-tico-7dba715458e7.jpg', primaryText: 'Chamar no WhatsApp' },
+      sections: [{ type: 'split', style: 'light', kicker: 'Conteúdo', title: 'Sua seção aparece aqui', description: 'Adicione textos, fotos, cards, galerias e mapas pelo painel.', image: '/assets/img/restaurante-em-maring-044e671ba002.jpg' }]
+    };
+    var sections = Array.isArray(first.sections) ? first.sections : [];
+    var cta = first.cta && first.cta.title ? [Object.assign({ type: 'cta' }, first.cta)] : [];
+    return h(PreviewChrome, null,
+      h('section', { className: 'section section-light preview-extra-list' },
+        h('div', { className: 'container' },
+          h('span', { className: 'section-kicker' }, 'Páginas extras'),
+          h('h2', null, 'Páginas criadas no painel'),
+          pages.length ? h('div', { className: 'cards three' }, pages.map(function (page, i) {
+            return h('article', { className: 'info-card', key: i },
+              h('strong', null, page.showInMenu ? 'Menu' : 'Oculta'),
+              h('h3', null, text(page.menuTitle || page.hero && page.hero.title || 'Página sem título')),
+              h('p', null, '/p/' + text(page.slug || 'sem-slug'))
+            );
+          })) : h('p', null, 'Nenhuma página extra cadastrada ainda.')
+        )
+      ),
+      h(SiteHeader, { site: fallbackSite }),
+      h(Hero, { data: first, site: fallbackSite }),
+      sections.map(function (s, i) { return h(Section, { section: s, site: fallbackSite, key: i, index: i }); }),
+      cta.map(function (s, i) { return h(Cta, { section: s, key: 'cta' + i, label: 'Chamada final' }); }),
+      h(SiteFooter, { site: fallbackSite })
+    );
+  }
+
   CMS.registerPreviewTemplate('configuracoes', ConfigPreview);
+  CMS.registerPreviewTemplate('paginas_extras', ExtraPagesPreview);
 })();

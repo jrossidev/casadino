@@ -43,6 +43,30 @@ collections:
               - { label: "Instagram", name: "instagram", widget: "string", required: false }
               - { label: "Facebook", name: "facebook", widget: "string", required: false }
               - { label: "YouTube", name: "youtube", widget: "string", required: false }
+          - label: "Módulos do site"
+            name: "modules"
+            widget: "object"
+            collapsed: true
+            hint: "São recursos prontos do site. Não é plugin aberto como WordPress; é mais seguro porque só ativa módulos aprovados."
+            fields:
+              - { label: "Mostrar botão flutuante do WhatsApp", name: "floatingWhatsapp", widget: "boolean", default: true }
+              - label: "Faixa de aviso no topo"
+                name: "announcement"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Ativar faixa", name: "enabled", widget: "boolean", default: false }
+                  - { label: "Texto da faixa", name: "text", widget: "string", required: false }
+                  - { label: "Texto do botão", name: "buttonText", widget: "string", required: false }
+                  - { label: "Link do botão", name: "buttonLink", widget: "string", required: false }
+              - label: "Analytics e Pixel"
+                name: "analytics"
+                widget: "object"
+                collapsed: true
+                hint: "Use somente IDs oficiais. Deixe vazio se não for usar."
+                fields:
+                  - { label: "Google Analytics ID", name: "googleAnalyticsId", widget: "string", required: false, hint: "Exemplo: G-XXXXXXXXXX" }
+                  - { label: "Meta Pixel ID", name: "metaPixelId", widget: "string", required: false, hint: "Somente números do Pixel." }
 
   - name: "paginas"
     label: "📝 Páginas do site"
@@ -91,6 +115,7 @@ collections:
                   - { label: "Formulário de contato", value: "contact" }
                   - { label: "Formulário Trabalhe Conosco", value: "work" }
                   - { label: "Cardápio / itens", value: "menu" }
+                  - { label: "Mapa / localização", value: "map" }
               - label: "Cor do bloco"
                 name: "style"
                 widget: "select"
@@ -112,6 +137,7 @@ collections:
                   - { label: "Esquerda", value: "left" }
               - { label: "Texto do botão", name: "buttonText", widget: "string", required: false }
               - { label: "Link do botão", name: "buttonLink", widget: "string", required: false }
+              - { label: "URL incorporada do Google Maps", name: "embedUrl", widget: "string", required: false, hint: "Use apenas links de incorporação do Google Maps. Ex.: https://www.google.com/maps/embed?..." }
               - label: "Etiquetas"
                 name: "tags"
                 widget: "list"
@@ -142,6 +168,7 @@ collections:
               - { label: "Descrição", name: "description", widget: "text", required: false }
               - { label: "Texto do botão", name: "buttonText", widget: "string", required: false }
               - { label: "Link do botão", name: "buttonLink", widget: "string", required: false }
+              - { label: "URL incorporada do Google Maps", name: "embedUrl", widget: "string", required: false, hint: "Use apenas links de incorporação do Google Maps. Ex.: https://www.google.com/maps/embed?..." }
       - label: "Restaurante"
         name: "restaurante"
         file: "content/restaurante.json"
@@ -172,3 +199,108 @@ collections:
         file: "content/cardapio.json"
         format: "json"
         fields: *pageFields
+
+
+  - name: "paginas_extras"
+    label: "➕ Páginas extras"
+    description: "Crie páginas novas sem mexer no código. Depois use a URL /p/slug-da-pagina."
+    editor:
+      preview: true
+    files:
+      - label: "Criador de páginas extras"
+        name: "extras"
+        file: "content/pages.json"
+        format: "json"
+        fields:
+          - label: "Páginas criadas"
+            name: "pages"
+            widget: "list"
+            summary: "{{fields.menuTitle}} — /p/{{fields.slug}}"
+            hint: "Cada item abaixo vira uma nova página pública. Use o campo 'Mostrar no menu' quando quiser que ela apareça no topo do site."
+            fields:
+              - { label: "Mostrar no menu do site", name: "showInMenu", widget: "boolean", default: false, hint: "Ative para aparecer no menu principal." }
+              - { label: "Nome no menu", name: "menuTitle", widget: "string", hint: "Texto curto. Ex.: Promoções" }
+              - { label: "Slug da URL", name: "slug", widget: "string", pattern: ['^[a-z0-9-]+$', "Use apenas letras minúsculas, números e hífen"], hint: "Exemplo: aniversario-infantil. A página ficará em /p/aniversario-infantil" }
+              - { label: "Título SEO", name: "titleTag", widget: "string" }
+              - { label: "Descrição SEO", name: "metaDescription", widget: "text", required: false }
+              - label: "Topo da página"
+                name: "hero"
+                widget: "object"
+                fields:
+                  - { label: "Selo", name: "eyebrow", widget: "string", required: false }
+                  - { label: "Título principal", name: "title", widget: "string" }
+                  - { label: "Descrição", name: "description", widget: "text", required: false }
+                  - { label: "Imagem de fundo", name: "image", widget: "image", required: false }
+                  - { label: "Texto do botão principal", name: "primaryText", widget: "string", required: false }
+                  - { label: "Link do botão principal", name: "primaryLink", widget: "string", required: false }
+                  - { label: "Texto do botão secundário", name: "secondaryText", widget: "string", required: false }
+                  - { label: "Link do botão secundário", name: "secondaryLink", widget: "string", required: false }
+              - label: "Seções da página"
+                name: "sections"
+                widget: "list"
+                required: false
+                summary: "{{fields.type}} — {{fields.title}}"
+                fields:
+                  - label: "Tipo da seção"
+                    name: "type"
+                    widget: "select"
+                    default: "split"
+                    options:
+                      - { label: "Texto com imagem", value: "split" }
+                      - { label: "Cards / tópicos", value: "cards" }
+                      - { label: "Galeria de fotos", value: "gallery" }
+                      - { label: "Chamada com botão", value: "cta" }
+                      - { label: "Unidades", value: "units" }
+                      - { label: "Formulário de contato", value: "contact" }
+                      - { label: "Formulário Trabalhe Conosco", value: "work" }
+                      - { label: "Cardápio / itens", value: "menu" }
+                      - { label: "Mapa / localização", value: "map" }
+                  - label: "Cor do bloco"
+                    name: "style"
+                    widget: "select"
+                    default: "light"
+                    required: false
+                    options:
+                      - { label: "Claro", value: "light" }
+                      - { label: "Escuro", value: "dark" }
+                  - { label: "Selo", name: "kicker", widget: "string", required: false }
+                  - { label: "Título", name: "title", widget: "string", required: false }
+                  - { label: "Descrição", name: "description", widget: "text", required: false }
+                  - { label: "Imagem", name: "image", widget: "image", required: false }
+                  - label: "Posição da imagem"
+                    name: "imagePosition"
+                    widget: "select"
+                    required: false
+                    options:
+                      - { label: "Direita", value: "right" }
+                      - { label: "Esquerda", value: "left" }
+                  - { label: "Texto do botão", name: "buttonText", widget: "string", required: false }
+                  - { label: "Link do botão", name: "buttonLink", widget: "string", required: false }
+                  - { label: "URL incorporada do Google Maps", name: "embedUrl", widget: "string", required: false }
+                  - label: "Etiquetas"
+                    name: "tags"
+                    widget: "list"
+                    required: false
+                    field: { label: "Texto", name: "tag", widget: "string" }
+                  - label: "Itens, fotos ou cards"
+                    name: "items"
+                    widget: "list"
+                    required: false
+                    summary: "{{fields.title}}"
+                    fields:
+                      - { label: "Título", name: "title", widget: "string", required: false }
+                      - { label: "Selo/Subtítulo", name: "subtitle", widget: "string", required: false }
+                      - { label: "Texto", name: "text", widget: "text", required: false }
+                      - { label: "Imagem", name: "image", widget: "image", required: false }
+                      - { label: "Texto do link", name: "linkText", widget: "string", required: false }
+                      - { label: "URL do link", name: "linkUrl", widget: "string", required: false }
+              - label: "Chamada final"
+                name: "cta"
+                widget: "object"
+                required: false
+                collapsed: true
+                fields:
+                  - { label: "Título", name: "title", widget: "string", required: false }
+                  - { label: "Descrição", name: "description", widget: "text", required: false }
+                  - { label: "Texto do botão", name: "buttonText", widget: "string", required: false }
+                  - { label: "Link do botão", name: "buttonLink", widget: "string", required: false }

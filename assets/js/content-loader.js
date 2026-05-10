@@ -33,6 +33,44 @@
     return `href="${esc(href)}"${external ? ' target="_blank" rel="noreferrer"' : ''}`;
   };
 
+  const slugFromUrl = () => {
+    const params = new URLSearchParams(window.location.search);
+    const fromQuery = params.get('slug') || params.get('pagina');
+    if (fromQuery) return fromQuery.replace(/[^a-z0-9-]/gi, '').toLowerCase();
+    const match = window.location.pathname.match(/\/p\/([^/]+)/);
+    return match ? match[1].replace(/[^a-z0-9-]/gi, '').toLowerCase() : '';
+  };
+
+  const baseNav = [
+    { label: 'Início', href: '/maringa.html', file: 'maringa.html' },
+    { label: 'Restaurante', href: '/restaurante-maringa.html', file: 'restaurante-maringa.html' },
+    { label: 'Cardápio', href: '/cardapio-maringa.html', file: 'cardapio-maringa.html' },
+    { label: 'Festas', href: '/festa-maringa.html', file: 'festa-maringa.html' },
+    { label: 'Mundo Kids', href: '/mundo-kids-maringa.html', file: 'mundo-kids-maringa.html' },
+    { label: 'Trabalhe Aqui', href: '/trabalhe-maringa.html', file: 'trabalhe-maringa.html' },
+    { label: 'Contato', href: '/fale-maringa.html', file: 'fale-maringa.html' }
+  ];
+
+  const extraNav = (pagesData = {}) => (pagesData.pages || [])
+    .filter(item => item && item.showInMenu && item.slug && item.menuTitle)
+    .map(item => ({ label: item.menuTitle, href: `/p/${item.slug}`, slug: item.slug }));
+
+  const currentIsActive = (item) => {
+    if (page === 'extra') return item.slug && item.slug === slugFromUrl();
+    const currentFile = document.body.dataset.file || '';
+    return item.file === currentFile;
+  };
+
+  const renderNavigation = (pagesData) => {
+    const links = [...baseNav, ...extraNav(pagesData)];
+    document.querySelectorAll('[data-nav]').forEach(nav => {
+      nav.innerHTML = links.map(item => `<a href="${esc(item.href)}"${currentIsActive(item) ? ' class="active"' : ''}>${text(item.label)}</a>`).join('');
+    });
+    document.querySelectorAll('[data-footer-links]').forEach(box => {
+      box.innerHTML = links.slice(1).map(item => `<a href="${esc(item.href)}">${text(item.label)}</a>`).join('');
+    });
+  };
+
   const unitCards = (site) => (site.units || []).map((unit) => `
     <aside class="hero-card">
       <img src="${esc(image(site.logo || '/assets/img/casa-do-dinossauro-6215cc7ecec5.webp'))}" alt="Casa do Dinossauro" loading="eager">
@@ -46,7 +84,7 @@
   const renderHero = (site, data) => {
     const hero = data.hero || {};
     const primaryHref = hero.primaryLink || whatsappUrl(site, 'Olá! Quero fazer uma reserva na Casa do Dinossauro.');
-    const secondaryHref = hero.secondaryLink || 'restaurante-maringa.html';
+    const secondaryHref = hero.secondaryLink || '/restaurante-maringa.html';
     return `
       <section class="hero">
         <div class="hero-bg" style="background-image: linear-gradient(90deg, rgba(22,14,8,.94), rgba(22,14,8,.68), rgba(22,14,8,.15)), url('${esc(image(hero.image || '/assets/img/restaurante-tem-tico-7dba715458e7.jpg'))}');"></div>
@@ -121,8 +159,18 @@
       <div class="container">
         ${renderSectionHead(section)}
         <div class="gallery-grid">
-          ${(section.items || []).map(item => `<img class="reveal" src="${esc(image(item.image))}" alt="${esc(item.title || '')}" loading="lazy">`).join('')}
+          ${(section.items || []).map(item => item.image ? `<img class="reveal" src="${esc(image(item.image))}" alt="${esc(item.title || '')}" loading="lazy">` : '').join('')}
         </div>
+      </div>
+    </section>
+  `;
+
+  const safeMapUrl = (url='') => /^https:\/\/www\.google\.com\/maps\/embed/.test(String(url).trim());
+  const renderMap = (section) => `
+    <section class="section editable-section ${section.style === 'dark' ? 'section-dark' : 'section-light'}">
+      <div class="container">
+        ${renderSectionHead(section)}
+        ${safeMapUrl(section.embedUrl) ? `<div class="map-frame reveal"><iframe src="${esc(section.embedUrl)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>` : `<div class="map-frame map-placeholder reveal">Adicione uma URL de incorporação do Google Maps no painel.</div>`}
       </div>
     </section>
   `;
@@ -201,10 +249,11 @@
     if (type === 'units') return renderUnits(section, site);
     if (type === 'contact') return renderContact(section, site);
     if (type === 'work') return renderWork(section, site);
+    if (type === 'map') return renderMap(section);
     return renderSplit(section);
   };
 
-  const renderFooter = (site) => {
+  const renderFooter = (site, pagesData) => {
     setText('[data-footer-description]', site.description || '');
     setText('[data-footer-hours]', site.hours || '');
     document.querySelectorAll('[data-site-logo]').forEach((img) => { if (site.logo) img.src = image(site.logo); });
@@ -215,12 +264,58 @@
       setHref('[data-social="facebook"]', site.social.facebook);
       setHref('[data-social="youtube"]', site.social.youtube);
     }
+    renderNavigation(pagesData);
   };
 
+  const applyModules = (site) => {
+    const modules = site.modules || {};
+    document.querySelectorAll('.site-announcement').forEach(el => el.remove());
+    const announcement = modules.announcement || {};
+    const header = document.querySelector('[data-header]');
+    if (announcement.enabled && announcement.text && header) {
+      const bar = document.createElement('div');
+      bar.className = 'site-announcement';
+      bar.innerHTML = `<div class="container"><span>${text(announcement.text)}</span>${announcement.buttonText ? `<a ${linkAttrs(announcement.buttonLink || '#')}>${text(announcement.buttonText)}</a>` : ''}</div>`;
+      header.insertAdjacentElement('afterend', bar);
+    }
+    document.querySelectorAll('.float-whatsapp').forEach(el => {
+      el.style.display = modules.floatingWhatsapp === false ? 'none' : '';
+    });
+    const ga = modules.analytics?.googleAnalyticsId || '';
+    if (/^G-[A-Z0-9]+$/i.test(ga) && !document.querySelector('[data-module="ga4"]')) {
+      const s1 = document.createElement('script');
+      s1.async = true; s1.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(ga)}`; s1.dataset.module = 'ga4';
+      const s2 = document.createElement('script');
+      s2.dataset.module = 'ga4';
+      s2.textContent = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${ga}');`;
+      document.head.append(s1, s2);
+    }
+    const pixel = modules.analytics?.metaPixelId || '';
+    if (/^\d{5,}$/.test(pixel) && !document.querySelector('[data-module="meta-pixel"]')) {
+      const s = document.createElement('script');
+      s.dataset.module = 'meta-pixel';
+      s.textContent = `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${pixel}');fbq('track','PageView');`;
+      document.head.appendChild(s);
+    }
+  };
+
+  const fetchJson = (url, fallback={}) => fetch(url, { cache: 'no-store' }).then(res => res.ok ? res.json() : fallback).catch(() => fallback);
+
   Promise.all([
-    fetch('content/site.json', { cache: 'no-store' }).then((res) => res.json()),
-    fetch(`content/${page}.json`, { cache: 'no-store' }).then((res) => res.json())
-  ]).then(([site, data]) => {
+    fetchJson('/content/site.json'),
+    fetchJson('/content/pages.json', { pages: [] })
+  ]).then(([site, pagesData]) => {
+    const contentPromise = page === 'extra'
+      ? Promise.resolve((pagesData.pages || []).find(p => p.slug === slugFromUrl()) || null)
+      : fetchJson(`/content/${page}.json`, null);
+    return contentPromise.then(data => [site, pagesData, data]);
+  }).then(([site, pagesData, data]) => {
+    if (!data) {
+      main.innerHTML = `<section class="section section-light"><div class="container"><h1>Página não encontrada</h1><p>Confira o endereço digitado ou volte para a página inicial.</p><div class="hero-actions"><a class="btn primary" href="/maringa.html">Voltar para o início</a></div></div></section>`;
+      renderFooter(site, pagesData);
+      applyModules(site);
+      return;
+    }
     window.siteWhatsappNumber = site.whatsappNumber || '554430472200';
     document.title = data.titleTag || site.siteTitle || document.title;
     const meta = document.querySelector('meta[name="description"]');
@@ -228,15 +323,12 @@
 
     setHref('[data-whatsapp-link]', whatsappUrl(site, 'Olá! Quero fazer uma reserva na Casa do Dinossauro.'));
     setHref('[data-phone-link]', site.whatsappNumber ? `tel:+${site.whatsappNumber}` : '');
-    document.querySelectorAll('[data-nav] a').forEach(a => {
-      const href = a.getAttribute('href') || '';
-      if (href.includes(document.body.dataset.file || '')) a.classList.add('active');
-    });
 
     const sections = Array.isArray(data.sections) ? data.sections : [];
     const cta = data.cta && data.cta.title ? [{ type:'cta', ...data.cta }] : [];
     main.innerHTML = renderHero(site, data) + sections.map(s => renderSection(s, site)).join('') + cta.map(s => renderSection(s, site)).join('');
-    renderFooter(site);
+    renderFooter(site, pagesData);
+    applyModules(site);
     document.dispatchEvent(new CustomEvent('site-content-loaded'));
   }).catch((error) => {
     console.error('Erro ao carregar conteúdo do site:', error);

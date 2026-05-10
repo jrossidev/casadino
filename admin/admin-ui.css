@@ -77,3 +77,8 @@ body [class*="ObjectControl"] {
 @media (max-width: 900px) {
   .admin-floating-help { display: none; }
 }
+
+
+/* Toque mais humano no painel: separa melhor áreas grandes e ajuda o cliente a não se perder. */
+body [class*="SidebarContainer"]::before{content:"Casa do Dinossauro";display:block;margin:12px 12px 6px;padding:12px 14px;border-radius:16px;background:#120d09;color:#ffe09b;font-weight:900;text-align:center;box-shadow:0 12px 28px rgba(0,0,0,.16)}
+body [class*="ControlContainer"] label{font-weight:900!important;color:#2a2018!important}body [class*="Hint"]{color:#6d5d4b!important}.admin-floating-help{max-width:340px}

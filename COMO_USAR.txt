@@ -57,3 +57,27 @@ ATUALIZAÇÃO DO PAINEL ADMIN
 - A pré-visualização agora simula melhor o site público, com menu, topo, cards, seções, rodapé e WhatsApp.
 - As etiquetas que aparecem na pré-visualização, como "Topo da página" e "Seção 1", aparecem SOMENTE dentro do admin. Elas não aparecem no site público.
 - Para o cliente editar, ele entra em /admin, abre a página desejada, edita os campos à esquerda e confere a prévia à direita.
+
+
+NOVIDADES DESTA VERSÃO
+----------------------
+1. Páginas extras
+   No painel, entre em "Páginas extras" e adicione uma nova página.
+   Defina o campo "Slug da URL" usando letras minúsculas e hífen.
+   Exemplo: aniversario-infantil
+   A página ficará disponível em: /p/aniversario-infantil
+   Para aparecer no menu, marque "Mostrar no menu do site".
+
+2. Módulos do site
+   Em "Configurações gerais" existe a área "Módulos do site".
+   Ali você pode ativar/desativar o WhatsApp flutuante, faixa de aviso no topo, Google Analytics e Meta Pixel.
+   Por segurança, o painel não aceita instalar qualquer código externo como um WordPress. A ideia aqui é trabalhar com módulos prontos e seguros.
+
+3. Mapa
+   Em qualquer página ou página extra, adicione uma seção do tipo "Mapa / localização".
+   Use somente URL de incorporação do Google Maps.
+
+OBSERVAÇÃO SOBRE PLUGINS
+------------------------
+Este projeto não usa plugins abertos como WordPress. Isso é proposital: evita plugin quebrado, plugin pirata e plugin vulnerável.
+Quando precisar de uma funcionalidade nova, crie um módulo novo dentro do projeto ou peça uma manutenção.

@@ -1,5 +1,5 @@
 {
-  "titleTag": "Festas | Casa do Dinossauro",
+  "titleTag": "Festas | Casa do Dinossauro Maringá e Londrina",
   "metaDescription": "Faça sua festa na Casa do Dinossauro em Maringá e Londrina.",
   "hero": {
     "eyebrow": "Faça sua festa",
@@ -13,19 +13,19 @@
   },
   "sections": [
     {
-      "buttonLink": "https://wa.me/554430472200",
+      "type": "split",
       "style": "light",
       "kicker": "Festas",
       "title": "Sua comemoração com uma experiência diferente",
+      "description": "Nossa equipe ajuda a montar uma comemoração gostosa, temática e sem complicação. Dá para conversar sobre formato, datas, horários e detalhes pelo WhatsApp.",
+      "image": "/assets/img/festa-maringa-3-7993c8cec8d4.png",
+      "buttonText": "Pedir orçamento",
+      "buttonLink": "https://wa.me/554430472200",
       "tags": [
         "Aniversários",
         "Família",
         "Ambiente temático"
-      ],
-      "type": "split",
-      "image": "/assets/img/festa-maringa-3-7993c8cec8d4.png",
-      "description": "Edite aqui as informações sobre pacotes, formatos de festa, diferenciais e orientações para aniversários.",
-      "buttonText": "Pedir orçamento"
+      ]
     },
     {
       "type": "gallery",
