@@ -81,3 +81,8 @@ OBSERVAÇÃO SOBRE PLUGINS
 ------------------------
 Este projeto não usa plugins abertos como WordPress. Isso é proposital: evita plugin quebrado, plugin pirata e plugin vulnerável.
 Quando precisar de uma funcionalidade nova, crie um módulo novo dentro do projeto ou peça uma manutenção.
+
+
+PAINEL ADMIN
+- O aviso inicial do painel agora pode ser fechado no botão X.
+- Depois de fechado, ele não aparece novamente no mesmo navegador. Para ver de novo, limpe o cache/localStorage do navegador.
