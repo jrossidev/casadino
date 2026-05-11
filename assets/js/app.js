@@ -1,24 +1,49 @@
 
 (() => {
+  const closeMenu = () => {
+    const nav = document.querySelector('[data-nav]');
+    const toggle = document.querySelector('[data-menu-toggle]');
+    nav?.classList.remove('open', 'is-open');
+    toggle?.classList.remove('is-open');
+    toggle?.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+  };
+
+  const openMenu = () => {
+    const nav = document.querySelector('[data-nav]');
+    const toggle = document.querySelector('[data-menu-toggle]');
+    nav?.classList.add('open', 'is-open');
+    toggle?.classList.add('is-open');
+    toggle?.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('menu-open');
+  };
+
+  const toggleMenu = () => {
+    const nav = document.querySelector('[data-nav]');
+    const isOpen = nav?.classList.contains('open') || nav?.classList.contains('is-open');
+    isOpen ? closeMenu() : openMenu();
+  };
+
   const init = () => {
     const header = document.querySelector('[data-header]');
     const toggle = document.querySelector('[data-menu-toggle]');
-    const nav = document.querySelector('[data-nav]');
 
     window.addEventListener('scroll', () => {
       header?.classList.toggle('scrolled', window.scrollY > 20);
     }, { passive: true });
 
-    toggle?.addEventListener('click', () => {
-      const isOpen = nav?.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
-    });
-
-    nav?.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        nav.classList.remove('open');
-        toggle?.setAttribute('aria-expanded', 'false');
+    if (toggle && !toggle.dataset.menuReady) {
+      toggle.dataset.menuReady = 'true';
+      toggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        toggleMenu();
       });
+    }
+
+    document.querySelectorAll('[data-nav] a:not([data-close-ready])').forEach(link => {
+      link.dataset.closeReady = 'true';
+      link.addEventListener('click', closeMenu);
     });
 
     const revealObserver = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
@@ -51,6 +76,20 @@
       });
     });
   };
+
+  document.addEventListener('click', (event) => {
+    const clickedMenuButton = event.target.closest?.('[data-menu-toggle]');
+    const clickedNav = event.target.closest?.('[data-nav]');
+    if (!clickedMenuButton && !clickedNav) closeMenu();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 980) closeMenu();
+  });
 
   window.initSiteInteractions = init;
   if (document.readyState === 'loading') {
